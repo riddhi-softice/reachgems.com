@@ -1,319 +1,157 @@
-@extends('web.layouts2.app')
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-/* .intro-slider .slide-image img {
-    width: 100%;
-    object-fit: cover;
-}
-.intro-slider-container {
-    max-height: 520px;
-    overflow: hidden;
-}
-.intro-slider-container,
-.intro-slide {
-    background-color: transparent !important;
-}
-.slider-container-ratio .intro-slider,
-.slide-image>picture,
-.slide-image>img {
-    height: 500px;
-} */
+<head>
+    <title>Reach Gems - Diamond Luxury Watch</title>
 
-.intro-slider-container {
-    max-height: 520px;
-    overflow: hidden;
-}
-.intro-slider-container,
-.intro-slide {
-    background-color: transparent !important;
-}
-/* Tablet (768px – 991.98px) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .intro-slider-container {
-        max-height: 319px;
-    }
-}
-/* Medium Phones (481px – 767.98px) */
-@media (min-width: 481px) and (max-width: 767.98px) {
-    .intro-slider-container {
-        max-height: 400px;
-    }
-}
-/* Small Phones (≤480px) */
-@media (max-width: 480px) {
-    .intro-slider-container {
-        max-height: 360px;
-    }
-}
-@media (min-width: 530px) and (max-width: 550px) {
-    .intro-slider-container {
-        max-height: 320px !important;
-    }
-}
-/* Large Tablets and Small Laptops (1024px – 1199.98px) */
-@media (min-width: 1024px) and (max-width: 1199.98px) {
-    .intro-slider-container {
-        max-height: 360px; /* or your preferred height */
-    }
-}
+    {{-- SEO Meta --}}
+    <meta name="description"
+        content="Buy luxury diamond watches at Reach Gems. Explore premium collections of elegant timepieces.">
+    <meta name="keywords" content="Luxury Watches, Diamond Watch, Reach Gems, Men's Watch, Women's Watch">
+    <meta name="author" content="Reach Gems">
 
+    {{-- Viewport & Charset --}}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* .owl-simple.owl-nav-inside .owl-dots {
-    bottom: 12pc !important;
-}
+    {{-- Robots --}}
+    <meta name="robots" content="index, follow">
 
-.owl-simple .owl-nav [class*='owl-'] {
-    top: 35% !important;
-}
+    {{-- Open Graph (Social Sharing) --}}
+    <meta property="og:title" content="Reach Gems - Diamond Luxury Watch">
+    <meta property="og:description" content="Explore our exclusive diamond watch collection. Style meets elegance.">
+    <meta property="og:image" content="{{ asset('public/assets/images/slider/slide-1.webp') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
 
-@media (min-width: 768px) and (max-width: 830px) {
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom: 9pc !important; 
-    }
-} */
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reach Gems - Diamond Luxury Watch">
+    <meta name="twitter:description" content="Explore our exclusive diamond watch collection. Style meets elegance.">
+    <meta name="twitter:image" content="{{ asset('public/assets/images/slider/slide-1.webp') }}">
 
-/* === Default (Desktop and Large Screens) === */
-.owl-simple.owl-nav-inside .owl-dots {
-    position: absolute;
-    bottom: 12pc !important;
-    left: 0;
-    right: 0;
-    display: flex !important;
-    justify-content: center;
-}
-.owl-simple .owl-nav [class*='owl-'] {
-    position: absolute;
-    top: 37% !important;
-    transform: translateY(-50%);
-}
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/assets/images/icons/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/assets/images/icons/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/images/icons/favicon.png') }}">
+    <link rel="manifest" href="{{ asset('public/assets/images/icons/site.html') }}">
+    <link rel="shortcut icon" href="{{ asset('public/assets/images/icons/favicon.png') }}">
+    <meta name="apple-mobile-web-app-title" content="Reach Gems">
+    <meta name="application-name" content="Reach Gems">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{{ asset('public/assets/images/icons/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/owl-carousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/magnific-popup/magnific-popup.css') }}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/demos/demo-15.css') }}">
+    <style>
+        .display-row .title {
+            font-size: 2.5rem;
+        }
+        .more-container {
+            margin-top: 6rem;
+        }
 
-/* === Tablet (iPad Air: 768px–991.98px) === */
-@media (min-width: 768px) and (max-width: 900px) {
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom: 9pc !important;
-    }
+    </style>
+</head> 
+<body>
+    <div class="page-wrapper">
 
-    .owl-simple .owl-nav [class*='owl-'] {
-        top: 40% !important;
-    }
-}
-@media (min-width: 912px) and (max-width: 991.98px) {
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom: 10pc !important;
-    }
-}
-/* === Mobile (up to 767.98px) === */
-@media (max-width: 767.98px) {
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom:3pc !important;
-    }
+        @include('web.layouts.home_header')
 
-    .owl-simple .owl-nav [class*='owl-'] {
-        top: 45% !important;
-    }
-}
-@media (min-width: 481px) and (max-width: 767.98px) {
-/* @media (min-width: 481px) and (max-width: 766.98px) { */
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom: 6pc !important; /* Adjust based on your layout */
-    }
-    .owl-simple .owl-nav [class*='owl-'] {
-        top: 42% !important;
-    }
-}
-@media (max-width: 359.98px) {
-    .owl-simple.owl-nav-inside .owl-dots {
-        bottom: 2pc !important; /* 2pc = 32px */
-    }
+        <main class="main">      
 
-    .owl-simple .owl-nav [class*='owl-'] {
-        top: 47% !important;
-    }
-}
-/* .intro-slider-container {
-    position: relative;
-} */
-/* @media (min-width: 768px) and (max-width: 991.98px) {
-    .intro-slider .slide-image img {
-    width: 100%;
-    object-fit: cover;
-    }
-    .intro-slider-container {
-        max-height: 500px;
-        overflow: hidden;
-    }
-    .intro-slider-container,
-    .intro-slide {
-        background-color: transparent !important;
-    }
-    .slider-container-ratio .intro-slider,
-    .slide-image>picture,
-    .slide-image>img {
-        height: 480px;
-    }
-} */
-
-/*@media (max-width: 480px) {
-    .intro-slider .slide-image img {
-         height: 350px !important; 
-        width: 100%;
-        object-fit: cover;
-    }
-}*/
-</style>
-
-@section('content')
-<div class="intro-section bg-lighter pt-5 pb-3">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-12">
-                <div class="intro-slider-container slider-container-ratio slider-container-1 mb-2 mb-lg-0">
-                 
-                    <!-- <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside"
-                        data-toggle="owl" data-owl-options='{
-                                        "nav": false, 
-                                        "responsive": {
-                                            "768": {
-                                                "nav": true
-                                            }
-                                        }
-                                    }'> -->
-
-                        <!--  AUTO PLAY SLIDER -->
-                        <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside"
-                            data-toggle="owl" data-owl-options='{
-                                "nav": false,
-                                "autoplay": true,
-                                "autoplayTimeout": 3000,
-                                "autoplayHoverPause": true,
-                                "responsive": {
-                                    "768": {
-                                        "nav": true
-                                    }
-                                }
-                            }'>
-
-                        <div class="intro-slide">
-                            <a href="{{ url('more-products') }}">
-                                <figure class="slide-image">
-                                    <picture>
-                                        <source media="(max-width: 480px)" srcset="{{ asset('public/assets/images/slider/slide-1-480w.webp') }}">
-                                        <img src="{{ asset('public/assets/images/slider/slide-1.webp') }}" alt="Image Desc">
-                                    </picture>
-                                </figure>
+            <div class="intro-slider-container">
+                <div class="intro-slider owl-carousel owl-simple owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{"nav":false, "dots": false, "loop": false}'>
+                
+                    {{-- <div class="intro-slide position-relative">
+                        <!-- Background Video -->
+                        <video autoplay muted loop playsinline class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover z-n1">
+                            <source src="{{ asset('public/assets/videos/1.mp4') }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    
+                        <!-- Overlay Content -->
+                        <div class="container intro-content text-center position-relative z-1">
+                            <h3 class="intro-subtitle">Want to know what's hot?</h3>
+                            <h1 class="intro-title text-white">Spring Lookbook 2019</h1>
+                    
+                            <a href="#scroll-to-content" class="btn btn-outline-primary-2 scroll-to">
+                                <span>Start scrolling</span>
+                                <i class="icon-long-arrow-down"></i>
                             </a>
                         </div>
+                    </div> --}}
 
-                        <div class="intro-slide">
-                            <a href="{{ url('more-products') }}">
-                                <figure class="slide-image">
-                                    <picture>
-                                        <source media="(max-width: 480px)" srcset="{{ asset('public/assets/images/slider/slide-2-480w.webp') }}">
-                                        <img src="{{ asset('public/assets/images/slider/slide-2.webp') }}" alt="Image Desc">
-                                    </picture>
-                                </figure>
-                            </a>
-                        </div>
+                    
+                    <div class="intro-slide" style="background-image: url('{{ asset('public/assets/images/demos/demo-15/slider/slide-1.jpg') }}');">
+                        <div class="container intro-content text-center">
+                            <h3 class="intro-subtitle">Want to know what's hot?</h3><!-- End .h3 intro-subtitle -->
+                            <h1 class="intro-title text-white">Spring Lookbook 2019</h1><!-- End .intro-title -->
 
-                        <div class="intro-slide">
-                            <a href="{{ url('more-products') }}">
-                                <figure class="slide-image">
-                                    <picture>
-                                        <source media="(max-width: 480px)" srcset="{{ asset('public/assets/images/slider/slide-3-480w.webp') }}">
-                                        <img src="{{ asset('public/assets/images/slider/slide-3.webp') }}" alt="Image Desc">
-                                    </picture>
-                                </figure>
+                            <a href="#scroll-to-content" class="btn btn-outline-primary-2 scroll-to">
+                                <span>Start scrolling</span>
+                                <i class="icon-long-arrow-down"></i>
                             </a>
-                        </div>
+                        </div><!-- End .intro-content -->
+                    </div><!-- End .intro-slide -->
+                </div><!-- End .intro-slider owl-carousel owl-simple -->
+
+                <span class="slider-loader text-white"></span><!-- End .slider-loader -->
+            </div><!-- End .intro-slider-container -->
+
+            <div class="display-row bg-light">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
                         
-                    </div>
+                        <div class="col-lg-12">
+                            <div class="heading text-center">
+                                <h2 class="title">Recently arrived</h2>
+                                {{-- <h2 class="title">About This Look</h2><!-- End .title text-center -->
+                                <p class="title-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p><!-- End .title-desc --> --}}
+                            </div><!-- End .heading -->
 
-                    <span class="slider-loader"></span>
-                </div>
+                            <div class="row">
+
+                                @foreach ($data['all_products'] as $product)
+                                @include('web.partials.product-card-new', ['product' => $product])
+                                @endforeach
+                            </div><!-- End .row -->
+                        </div><!-- End .col-lg-6 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container-fluid -->
+            </div><!-- End .display-row .bg-light -->
+
+            <div class="more-container text-center">
+                <a href="{{ route('product.more') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             </div>
+            
+        </main><!-- End .main -->
+    
+        @include('web.layouts2._footer')
 
-        </div>
-    </div>
-</div>
-
-<!-- Hidden on mobile (visible on md and up) -->
-<div class="mb-6 d-none d-md-block"></div>
-<div class="mb-5 d-none d-md-block"></div>
-
-<!-- Visible only on mobile -->
-<div class="mb-3 d-block d-md-none"></div>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 
-<div class="container">
+<!-- Plugins JS File -->
+<script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/jquery.hoverIntent.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/superfish.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/bootstrap-input-spinner.js') }}"></script>
+<script src="{{ asset('public/assets/js/jquery.magnific-popup.min.js') }}"></script>
+<!-- Main JS File -->
+<script src="{{ asset('public/assets/js/main.js') }}"></script>
+<script src="{{ asset('public/assets/js/demos/demo-15.js') }}"></script>
+</body>
 
-    <div class="heading heading-center mb-6">
-        <h2 class="title">Recently arrived</h2>
-    </div>
-    <!-- End .heading -->
-
-    <div class="tab-content">
-        <!-- All Products Tab -->
-        <div class="tab-pane fade show active" id="top-all-tab" role="tabpanel" aria-labelledby="top-all-link">
-            <div class="row justify-content-center g-4">
-                @foreach ($data['all_products'] as $product)
-                @include('web.partials.product-card', ['product' => $product])
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- .End .tab-pane -->
-
-</div><!-- End .tab-content -->
-
-<!-- @if(count($data['all_products']) == 4)
-<div class="more-container text-center">
-    <a href="{{ route('product.more') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
-</div>
-@endif -->
-
-<div class="container">
-    <hr>
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-sm-6">
-            <div class="icon-box icon-box-card text-center">
-                <span class="icon-box-icon">
-                    <i class="icon-rocket"></i>
-                </span>
-                <div class="icon-box-content">
-                    <h3 class="icon-box-title">Payment & Delivery</h3>
-                    <p>Free shipping for orders over $50</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-sm-6">
-            <div class="icon-box icon-box-card text-center">
-                <span class="icon-box-icon">
-                    <i class="icon-rotate-left"></i>
-                </span>
-                <div class="icon-box-content">
-                    <h3 class="icon-box-title">Return & Refund</h3>
-                    <p>Free 100% money back guarantee</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-sm-6">
-            <div class="icon-box icon-box-card text-center">
-                <span class="icon-box-icon">
-                    <i class="icon-life-ring"></i>
-                </span>
-                <div class="icon-box-content">
-                    <h3 class="icon-box-title">Quality Support</h3>
-                    <p>Alway online feedback 24/7</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-2"></div><!-- End .mb-2 -->
-</div>
-@endsection
-@section('javascript')
-@endsection
+<!-- molla/index-15.html  22 Nov 2019 10:00:09 GMT -->
+</html>

@@ -1,5 +1,5 @@
   <header class="header">
-    <div class="header-middle sticky-header">
+       <div class="header-middle sticky-header">
         <div class="container">
             <div class="header-left">
                 <button class="mobile-menu-toggler">
@@ -10,7 +10,7 @@
                 <a href="{{ url('/') }}" class="logo">
                     <img src="{{ asset('public/assets/images/logo.png') }}" alt="Molla Logo" width="120" height="32">
                 </a>
-
+ 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container {{ Request::is('/') ? 'active' : '' }}">

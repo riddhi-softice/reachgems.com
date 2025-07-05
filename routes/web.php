@@ -72,7 +72,7 @@ Route::get('privacypolicy', function () {
             Route::post('place/order','placeOrder')->name('order.place');
             
             Route::get('orders/history', 'orderHistory')->name('orders.history');  // order page 
-            
+
             Route::get('track', 'track')->name('track');  // order page 
         });
 

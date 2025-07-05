@@ -53,15 +53,16 @@
     <link rel="preload" as="image" href="{{ asset('public/assets/images/slider/slide-3-480w.webp') }}">
 
     {{-- CSS Files --}}
-    <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}" media="print" onload="this.onload=null;this.media='all';">
-    <noscript><link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}"></noscript>
+    {{-- <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}" media="print" onload="this.onload=null;this.media='all';">
+    <noscript><link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}"></noscript> --}}
 
-    <!--<link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}">-->
+    <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/owl-carousel/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/nouislider/nouislider.css') }}">
 
+    
     @yield('css')
     <!--<style>
         .text-muted, footer p, footer a {

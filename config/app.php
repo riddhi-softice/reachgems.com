@@ -54,9 +54,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://reachgems.com'),
+    'url' => env('APP_URL', 'http://192.168.1.8/reachgems.com'),
 
-    'asset_url' => env('ASSET_URL', 'https://reachgems.com'),
+    'asset_url' => env('ASSET_URL', 'http://192.168.1.8/reachgems.com'),
 
     /*
     |--------------------------------------------------------------------------
