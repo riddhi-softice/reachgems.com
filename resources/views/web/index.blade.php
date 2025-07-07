@@ -18,7 +18,7 @@
     {{-- Robots --}}
     <meta name="robots" content="index, follow">
 
-    {{-- Open Graph (Social Sharing) --}}
+    {{-- Open Graph (Social Sharing) --}} 
     <meta property="og:title" content="Reach Gems - Diamond Luxury Watch">
     <meta property="og:description" content="Explore our exclusive diamond watch collection. Style meets elegance.">
     <meta property="og:image" content="{{ asset('public/assets/images/slider/slide-1.webp') }}">
@@ -56,54 +56,56 @@
         .more-container {
             margin-top: 6rem;
         }
+        .header-top {
+            margin-top: -19px;
+        }
 
+        /* .header-main, .intro-slider, .your-next-section {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            background-color: transparent !important;
+        }
+        .header-top {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            box-shadow: none !important;
+            z-index: 10;
+        }
+        .header-top + * {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        } */
     </style>
 </head> 
 <body>
     <div class="page-wrapper">
 
         @include('web.layouts.home_header')
-
         <main class="main">      
 
-            <div class="intro-slider-container">
-                <div class="intro-slider owl-carousel owl-simple owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{"nav":false, "dots": false, "loop": false}'>
-                
-                    {{-- <div class="intro-slide position-relative">
-                        <!-- Background Video -->
-                        <video autoplay muted loop playsinline class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover z-n1">
+            <div class="intro-slider-container" style="overflow-x: hidden;">
+                <div class="intro-slide position-relative" style="max-width: 100%; background-image: url('{{ asset('public/assets/images/demos/demo-15/slider/slide-1.jpg') }}');">
+                    {{-- <div class="intro-slide position-relative" style="max-width: 100%;">
+                        <video autoplay muted loop playsinline
+                            class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover z-n1"
+                            style="max-width: 100vw; max-height: 100vh;">
                             <source src="{{ asset('public/assets/videos/1.mp4') }}" type="video/mp4">
                             Your browser does not support the video tag.
-                        </video>
-                    
-                        <!-- Overlay Content -->
-                        <div class="container intro-content text-center position-relative z-1">
-                            <h3 class="intro-subtitle">Want to know what's hot?</h3>
-                            <h1 class="intro-title text-white">Spring Lookbook 2019</h1>
-                    
-                            <a href="#scroll-to-content" class="btn btn-outline-primary-2 scroll-to">
-                                <span>Start scrolling</span>
-                                <i class="icon-long-arrow-down"></i>
-                            </a>
-                        </div>
-                    </div> --}}
+                        </video> --}}
 
-                    
-                    <div class="intro-slide" style="background-image: url('{{ asset('public/assets/images/demos/demo-15/slider/slide-1.jpg') }}');">
-                        <div class="container intro-content text-center">
-                            <h3 class="intro-subtitle">Want to know what's hot?</h3><!-- End .h3 intro-subtitle -->
-                            <h1 class="intro-title text-white">Spring Lookbook 2019</h1><!-- End .intro-title -->
-
-                            <a href="#scroll-to-content" class="btn btn-outline-primary-2 scroll-to">
-                                <span>Start scrolling</span>
-                                <i class="icon-long-arrow-down"></i>
-                            </a>
-                        </div><!-- End .intro-content -->
-                    </div><!-- End .intro-slide -->
-                </div><!-- End .intro-slider owl-carousel owl-simple -->
-
-                <span class="slider-loader text-white"></span><!-- End .slider-loader -->
-            </div><!-- End .intro-slider-container -->
+                    <div class="container intro-content text-center position-relative z-1">
+                        <h1 class="intro-title text-white">{{ $data['common_settings']['video_heading'] }}</h1>
+                        <h3 class="intro-subtitle">{{ $data['common_settings']['video_description'] }}</h3>
+                        <a href="{{ url('more-products') }}" class="btn btn-outline-primary-2">
+                            <span>Shop Now</span>
+                            <i class="icon-long-arrow-down"></i>
+                        </a>
+                    </div>                   
+                </div>
+            </div><!-- End .intro-slider owl-carousel owl-simple -->
+            
+            </div>
 
             <div class="display-row bg-light">
                 <div class="container-fluid">
@@ -119,7 +121,7 @@
                             <div class="row">
 
                                 @foreach ($data['all_products'] as $product)
-                                @include('web.partials.product-card-new', ['product' => $product])
+                                    @include('web.partials.product-card-new', ['product' => $product])
                                 @endforeach
                             </div><!-- End .row -->
                         </div><!-- End .col-lg-6 -->
@@ -130,14 +132,61 @@
             <div class="more-container text-center">
                 <a href="{{ route('product.more') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             </div>
+
+            <div class="blog-posts mb-9">
+                <div class="container-fluid">
+                    <div class="heading text-center">
+                        <h2 class="title">{{ $data['common_settings']['cat_heading'] }}</h2>
+                        <p class="title-desc">{{ $data['common_settings']['cat_desc'] }}</p>
+                    </div><!-- End .heading -->
+
+                    <div class="owl-carousel owl-simple" data-toggle="owl" 
+                        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "items": 3,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "520": {
+                                    "items":2
+                                },
+                                "768": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                }
+                            }
+                        }'>
+
+                        @foreach ($data['all_categories'] as $cat)
+                            <article class="entry">
+                                <figure class="entry-media">
+                                    <a href="#">
+                                        <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}" alt="image desc" style="height: 300px !important" height="300">
+                                    </a>
+                                </figure><!-- End .entry-media -->
+                                <div class="entry-body text-center">
+                                    <h3 class="entry-title">
+                                        <a href="#">{{ $cat->name }}</a>
+                                    </h3><!-- End .entry-title -->
+                                </div><!-- End .entry-body -->
+                            </article><!-- End .entry -->
+                        @endforeach
+                        
+                    </div><!-- End .owl-carousel -->
+                </div><!-- End .container-fluid -->
+            </div><!-- End .blog-posts -->
             
         </main><!-- End .main -->
-    
         @include('web.layouts2._footer')
 
-</div><!-- End .page-wrapper -->
+    </div><!-- End .page-wrapper -->
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
-
 
 <!-- Plugins JS File -->
 <script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
@@ -151,7 +200,35 @@
 <!-- Main JS File -->
 <script src="{{ asset('public/assets/js/main.js') }}"></script>
 <script src="{{ asset('public/assets/js/demos/demo-15.js') }}"></script>
-</body>
+<script>
+    function getMidnightTimestamp() {
+        const now = new Date();
+        const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // Tomorrow 12:00 AM
+        return midnight.getTime();
+    }
+    const countdownEndTime = getMidnightTimestamp();
 
-<!-- molla/index-15.html  22 Nov 2019 10:00:09 GMT -->
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = countdownEndTime - now;
+
+        if (distance <= 0) {
+            document.getElementById("hours").innerText = "00";
+            document.getElementById("minutes").innerText = "00";
+            document.getElementById("seconds").innerText = "00";
+            return;
+        }
+
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+</body>
 </html>

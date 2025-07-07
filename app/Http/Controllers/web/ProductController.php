@@ -53,9 +53,7 @@ class ProductController extends Controller
             if ($response->ok() && $response['status'] === 'success') {
                 $country = $response['country'];
             }
-        } catch (\Exception $e) {
-            // Optional: log or ignore
-        }
+        } catch (\Exception $e) { }
         // dd($country);
         $isIndia = strtolower($country) === 'india';
 
@@ -68,8 +66,13 @@ class ProductController extends Controller
         $products = Product::with('images')->latest()->take(4)->get()->map(function ($product) use ($isIndia, $usdRate) {
             $product->display_price = $isIndia ? $product->price * $usdRate : $product->price;
             return $product;
-        });
+        });       
+
+        $categories = DB::table('sub_categories')->latest()->get();
+        $common_settings = DB::table('common_settings')->pluck('setting_value', 'setting_key')->toArray();
         
+        $data['common_settings'] = $common_settings;
+        $data['all_categories'] = $categories;
         $data['all_products'] = $products;
         $data['country'] = $country; // Optional: show country on frontend
 
@@ -127,8 +130,7 @@ class ProductController extends Controller
             if ($response->ok() && $response['status'] === 'success') {
                 $country = $response['country'];
             }
-        } catch (\Exception $e) {
-        }
+        } catch (\Exception $e) { }
         $isIndia = strtolower($country) === 'india';
 
         // Step 2: Get USD conversion rate from common_settings
@@ -139,7 +141,15 @@ class ProductController extends Controller
         $product->display_price = $isIndia ? $product->price * $usdRate : $product->price;
         $product->reseller_display_price = $isIndia ? $product->reseller_price * $usdRate : $product->reseller_price;
 
-        return view('web.product_detail', compact('product','country'));
+        $categories = DB::table('sub_categories')->latest()->get();
+        $brands = DB::table('brands')->latest()->get();
+        $common_settings = DB::table('common_settings')->pluck('setting_value', 'setting_key')->toArray();
+
+        $data['common_settings'] = $common_settings;
+        $data['all_categories'] = $categories;
+        $data['brands'] = $brands;
+        
+        return view('web.product_detail', compact('product','country','data'));
     }
 
 }

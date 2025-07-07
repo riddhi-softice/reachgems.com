@@ -27,11 +27,20 @@
                         </ul>
                     </div>
                     @endif
-
                     
                     <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" id="productForm">
                         @csrf
                         @method('PUT')
+
+                        <div class="col-lg-6 mb-3">
+                            <label class="form-label fw-bold">Select Category</label>
+                            <select class="form-control" id="cat_id" name="cat_id">
+                                <option value="" disabled selected>-- Select Category --</option>
+                                @foreach ($category as $value)
+                                    <option value="{{ $value->id }}" {{ $value->id == $product->cat_id ? 'selected' : ''}}>{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Product Name</label>
@@ -86,6 +95,7 @@
                             <label class="form-label fw-bold">Product Images</label>
                             <input type="file" name="images[]" id="imageInput" class="form-control" multiple>
                         </div>
+
                         <div class="mb-3">
                             <div class="mt-2 d-flex flex-wrap gap-2" id="imagePreviewContainer">
                                 @foreach($product->images as $image)
@@ -142,7 +152,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Confirm Delete Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"

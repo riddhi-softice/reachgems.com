@@ -30,6 +30,16 @@
                         @endif
 
                         <div class="mb-3">
+                            <label class="form-label fw-bold">Select Category</label>
+                            <select class="form-control" id="cat_id" name="cat_id">
+                                <option value="" disabled selected>-- Select Category --</option>
+                                @foreach ($category as $value)
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label fw-bold">Product Name</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>

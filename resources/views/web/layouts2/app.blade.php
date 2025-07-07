@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <title>Reach Gems - Diamond Luxury Watch</title>
 
     {{-- SEO Meta --}}
-    <meta name="description"
-        content="Buy luxury diamond watches at Reach Gems. Explore premium collections of elegant timepieces.">
+    <meta name="description" content="Buy luxury diamond watches at Reach Gems. Explore premium collections of elegant timepieces.">
     <meta name="keywords" content="Luxury Watches, Diamond Watch, Reach Gems, Men's Watch, Women's Watch">
     <meta name="author" content="Reach Gems">
 
@@ -61,7 +58,6 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/nouislider/nouislider.css') }}">
-
     
     @yield('css')
     <!--<style>

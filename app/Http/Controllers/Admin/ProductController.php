@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductImage;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -21,7 +22,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $category = SubCategory::latest()->get();
+        return view('admin.products.create',compact('category'));
     }
 
     public function store(Request $request)
@@ -80,6 +82,7 @@ class ProductController extends Controller
             // 'additional_info' => 'nullable|string',
             // 'shipping_info' => 'nullable|string',
             // 'images.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'cat_id' => 'required',
             'name' => 'required',
             'description' => 'nullable|string',
             'price' => 'required',
@@ -92,6 +95,7 @@ class ProductController extends Controller
         // dd($validated['name']);
 
         $product = Product::create([
+            'cat_id' => $validated['cat_id'],
             'name' => $validated['name'],
             'description' => $validated['description'] ?? null,
             'price' => $validated['price'],
@@ -191,13 +195,15 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $category = SubCategory::latest()->get();
         $product = Product::with('images')->find($id);
-        return view('admin.products.edit', compact('product'));
+        return view('admin.products.edit', compact(['product','category']));
     }
 
     public function update(Request $request, Product $product)
     {
         $product->update([
+            'cat_id' => $request->cat_id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,

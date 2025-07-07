@@ -9,7 +9,7 @@
             </a>
         </li>
         
-         <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('get_setting') ? '' : 'collapsed' }}" href="{{ route('get_setting') }}">
                 <i class="bi bi-gear"></i>
                 <span>Common Setting</span>
@@ -24,8 +24,22 @@
         </li> -->
         
         <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('categories.index') ? '' : 'collapsed' }}" href="{{ route('categories.index') }}">
+                <i class="bi bi-list"></i>
+                <span>Categories</span>
+            </a>
+        </li>
+    
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('brands.index') ? '' : 'collapsed' }}" href="{{ route('brands.index') }}">
+                <i class="bi bi-list"></i>
+                <span>Brands</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('products.index') ? '' : 'collapsed' }}" href="{{ route('products.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-list"></i>
                 <span>Products</span>
             </a>
         </li>

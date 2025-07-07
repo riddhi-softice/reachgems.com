@@ -131,7 +131,6 @@
                     <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab"
                         role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping & Returns</a>
                 </li>
-
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
@@ -154,6 +153,88 @@
 
             </div><!-- End .tab-content -->
         </div><!-- End .product-details-tab -->
+
+        {{-- category view --}}
+        <div class="blog-posts mb-9">
+            <div class="container-fluid">
+                <div class="heading text-center" style="margin-bottom: 4.4rem;">
+                    <h2 class="title" style="margin-bottom: 2rem; font-size: 3rem; font-weight: 600; letter-spacing: -.01em;">{{ $data['common_settings']['cat_heading'] }}</h2>
+                    <p class="title-desc">{{ $data['common_settings']['cat_desc'] }}</p>
+                </div><!-- End .heading -->
+
+                <div class="owl-carousel owl-simple" data-toggle="owl" 
+                    data-owl-options='{
+                        "nav": false, 
+                        "dots": true,
+                        "items": 3,
+                        "margin": 20,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":1
+                            },
+                            "520": {
+                                "items":2
+                            },
+                            "768": {
+                                "items":3
+                            },
+                            "992": {
+                                "items":4
+                            }
+                        }
+                    }'>
+
+                    @foreach ($data['all_categories'] as $cat)
+                        <article class="entry">
+                            <figure class="entry-media">
+                                <a href="#">
+                                    <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}" alt="image desc" style="height: 300px !important" height="300">
+                                </a>
+                            </figure><!-- End .entry-media -->
+                            <div class="entry-body text-center">
+                                <h3 class="entry-title">
+                                    <a href="#">{{ $cat->name }}</a>
+                                </h3><!-- End .entry-title -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                    @endforeach
+                    
+                </div><!-- End .owl-carousel -->
+            </div><!-- End .container-fluid -->
+        </div><!-- End .blog-posts -->
+
+        {{-- brand view --}}
+        <div class="blog-posts mb-9">
+            <div class="container-fluid">
+                
+                <div class="heading text-center" style="margin-bottom: 4.4rem;">
+                    <h2 class="title" style="margin-bottom: 2rem; font-size: 3rem; font-weight: 600; letter-spacing: -.01em;">{{ $data['common_settings']['brand_heading'] }}</h2>
+                    <p class="title-desc">{{ $data['common_settings']['brand_desc'] }}</p>
+                </div><!-- End .heading -->
+        
+                <div class="owl-carousel owl-simple" data-toggle="owl" data-owl-options='{
+                        "nav": false, 
+                        "dots": false,
+                        "margin": 30,
+                        "loop": false,
+                        "responsive": {
+                            "0": {"items": 2},
+                            "420": {"items": 3},
+                            "600": {"items": 4},
+                            "900": {"items": 5},
+                            "1024": {"items": 6}
+                        }
+                    }'>
+                    @foreach ($data['brands'] as $brand)
+                        <a href="#" class="brand">
+                            <img src="{{ asset('public/assets/images/brands/' . $brand->logo) }}" alt="{{ $brand->name }}">
+                        </a>
+                    @endforeach
+                </div>
+
+            </div><!-- End .container-fluid -->
+        </div><!-- End .blog-posts -->
 
     </div><!-- End .container -->
 </div><!-- End .page-content -->

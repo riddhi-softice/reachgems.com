@@ -1,10 +1,35 @@
 <header class="header header-5">
 
+    {{-- <div class="header-top bg-primary text-white py-2" style="margin-bottom:0; padding-bottom:0; border-bottom:0;">
+        <div class="container-fluid d-flex justify-content-center align-items-center flex-wrap text-center" style="line-height:1;">
+            <div class="me-4">
+                <strong>US 4th of July SALE</strong><br>
+                <span>70% OFF + FREE GIFTS!</span>
+            </div>
+            <div id="countdown" class="d-flex gap-2 align-items-center ms-4">
+                <div class="time-box text-dark bg-white px-2 py-1 text-center">
+                    <span id="hours" class="fw-bold d-block">00</span>
+                    <small>HRS</small>
+                </div>
+                <div class="time-box text-dark bg-white px-2 py-1 text-center">
+                    <span id="minutes" class="fw-bold d-block">00</span>
+                    <small>MIN</small>
+                </div>
+                <div class="time-box text-dark bg-white px-2 py-1 text-center">
+                    <span id="seconds" class="fw-bold d-block">00</span>
+                    <small>SEC</small>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    
     <div class="header-top bg-primary text-white py-2">
         <div class="container-fluid d-flex justify-content-center align-items-center flex-wrap text-center">
             <div class="me-4" style="margin-right: 1rem;">
-                <strong>US 4th of July SALE</strong><br>
-                <span>70% OFF + FREE GIFTS!</span>
+
+                <strong> {{ $data['common_settings']['top_header_heading1'] }} </strong><br>
+                <span> {{ $data['common_settings']['top_header_heading2'] }} </span>
+               
             </div>
             <div id="countdown" class="d-flex gap-2 align-items-center ms-4">
                 <div class="time-box text-dark bg-white px-2 py-1 text-center">

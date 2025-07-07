@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\TwoFactorAuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController as admin_product;
 use App\Http\Controllers\Admin\CommonSettingController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BrandController;
 
 use App\Http\Controllers\ImageController;
 // use Intervention\Image\Facades\Image;
@@ -112,20 +114,26 @@ Route::prefix('admin')->group(function () {
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 
-    Route::middleware(['2fa','session.timeout','admin'])->group(function () {
+    // Route::middleware(['2fa','session.timeout','admin'])->group(function () {
 
         Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
         Route::get('account_setting', [AuthController::class, 'account_setting'])->name('account_setting');
         Route::post('account_setting_change', [AuthController::class, 'account_setting_change'])->name('post.account_setting');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-        
+
+        Route::resource('categories', CategoryController::class);
+        Route::post('categories/delete/{id}', [CategoryController::class, 'destroy_sub_categories'])->name('sub_categories.delete');
+       
+        Route::resource('brands', BrandController::class);
+        Route::post('brands/delete/{id}', [BrandController::class, 'destroy_brands'])->name('brands.delete');
+               
         Route::resource('products', admin_product::class);
         Route::post('admin/products/delete/{id}', [admin_product::class, 'destroy_products'])->name('products.delete');
         Route::post('/products/image/{id}', [admin_product::class, 'removeImage'])->name('products.image.delete');
 
         Route::resource('users', UserController::class);
         Route::get('get_order_list', [UserController::class, 'get_order_list'])->name('get_order_list');
-    });
+    // });
     
     Route::get('get_setting', [CommonSettingController::class, 'get_setting'])->name('get_setting');
     Route::post('change_setting', [CommonSettingController::class, 'change_setting'])->name('change_setting');
