@@ -19,6 +19,9 @@ class Product extends Model
         return $this->hasOne(ProductImage::class)->oldest(); // or ->orderBy('id')
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
     
 }
-

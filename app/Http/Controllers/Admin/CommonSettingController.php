@@ -20,12 +20,18 @@ class CommonSettingController extends Controller
         foreach ($request->all() as $key => $value) {
             # Check if the value is an array and convert it to a comma-separated string
             if (is_array($value)) {
-                //   $value = implode(',', $value);
                 $value = json_encode($value);
             }
-            CommonSetting::where("setting_key", $key)->when($request->filled($key), function ($query) use ($value) {
-                $query->update(['setting_value' => $value]);
-            });
+            // Convert empty strings to null
+            if (is_string($value) && trim($value) === '') {
+                $value = null;
+            }
+            // Update only if the setting key exists
+            CommonSetting::where("setting_key", $key)->update(['setting_value' => $value]);
+            
+            // CommonSetting::where("setting_key", $key)->when($request->filled($key), function ($query) use ($value) {
+            //     $query->update(['setting_value' => $value]);
+            // });
         }
         return redirect()->route('get_setting')->with('success', 'Data updated successfully.');
     }

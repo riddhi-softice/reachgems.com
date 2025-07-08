@@ -63,7 +63,20 @@
                                 <div class="row mb-3">
                                     <label for="top_header_heading2" class="col-sm-4 col-form-label">Top Header Heading-2</label>
                                     <div class="col-sm-8">
-                                        <textarea id="top_header_heading2" name="top_header_heading2" class="form-control" rows="2" placeholder="{{ $setting->data_comment }}" required>{{ old('setting_value', $setting->setting_value) }}</textarea>
+                                        <textarea id="top_header_heading2" name="top_header_heading2" class="form-control" rows="2" placeholder="{{ $setting->data_comment }}" >{{ old('setting_value', $setting->setting_value) }}</textarea>
+                                        <small class="form-text text-muted">{{ $setting->data_comment }}</small>
+                                    </div>
+                                </div>
+                            @endif
+                          
+                            @if ($setting->setting_key == 'top_header_time_status')
+                                <div class="row mb-3">
+                                    <label for="top_header_time_status" class="col-sm-4 col-form-label">Top Header Time Status</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="top_header_time_status" name="top_header_time_status">                                           
+                                            <option value="is_enable" {{ $setting->setting_value == 'is_enable' ? 'selected' : ''  }}>Enable</option>
+                                            <option value="is_disable" {{ $setting->setting_value == 'is_disable' ? 'selected' : ''  }}>Disable</option>
+                                        </select>
                                         <small class="form-text text-muted">{{ $setting->data_comment }}</small>
                                     </div>
                                 </div>

@@ -58,6 +58,13 @@
         }
         .header-top {
             margin-top: -19px;
+            background-color: #000000 !important;
+        }
+        .header-top .container:after, .header-top .container-fluid:after {
+            background-color: transparent;
+        }
+        .d-block {
+            font-weight: bold;
         }
 
         /* .header-main, .intro-slider, .your-next-section {
@@ -84,28 +91,25 @@
         @include('web.layouts.home_header')
         <main class="main">      
 
-            <div class="intro-slider-container" style="overflow-x: hidden;">
-                <div class="intro-slide position-relative" style="max-width: 100%; background-image: url('{{ asset('public/assets/images/demos/demo-15/slider/slide-1.jpg') }}');">
-                    {{-- <div class="intro-slide position-relative" style="max-width: 100%;">
-                        <video autoplay muted loop playsinline
-                            class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover z-n1"
-                            style="max-width: 100vw; max-height: 100vh;">
-                            <source src="{{ asset('public/assets/videos/1.mp4') }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video> --}}
-
-                    <div class="container intro-content text-center position-relative z-1">
+            <div class="intro-slider-container position-relative" style="overflow: hidden; height: 100vh;">
+                <div class="intro-slide position-relative w-100 h-100">
+                    <!-- Fullscreen Video Background -->
+                    <video autoplay muted loop playsinline class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-n1" style="object-fit: cover;">
+                        <source src="{{ asset('public/assets/videos/1.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+            
+                    <!-- Overlay Content -->
+                    <div class="container intro-content text-center position-relative z-1 d-flex flex-column justify-content-center align-items-center h-100">
                         <h1 class="intro-title text-white">{{ $data['common_settings']['video_heading'] }}</h1>
-                        <h3 class="intro-subtitle">{{ $data['common_settings']['video_description'] }}</h3>
-                        <a href="{{ url('more-products') }}" class="btn btn-outline-primary-2">
+                        <h3 class="intro-subtitle text-white">{{ $data['common_settings']['video_description'] }}</h3>
+                        <a href="{{ url('more-products') }}" class="btn btn-outline-primary-2 mt-3">
                             <span>Shop Now</span>
                             <i class="icon-long-arrow-down"></i>
                         </a>
-                    </div>                   
+                    </div>
                 </div>
-            </div><!-- End .intro-slider owl-carousel owl-simple -->
-            
-            </div>
+            </div>          
 
             <div class="display-row bg-light">
                 <div class="container-fluid">
@@ -130,7 +134,7 @@
             </div><!-- End .display-row .bg-light -->
 
             <div class="more-container text-center">
-                <a href="{{ route('product.more') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
+                <a href="{{ url('more-products') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             </div>
 
             <div class="blog-posts mb-9">
@@ -181,7 +185,56 @@
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .blog-posts -->
+
+            <div class="blog-posts mb-9 py-5 text-white">
+                <div class="container">
+                    <div class="heading text-center mb-5">
+                        <h2 class="title">Loved by <span style="color:#c96;">100,000+</span> Iced Out Customers</h2>
+                    </div>
             
+                    <div class="row justify-content-center gy-4">
+                        <!-- Card 1 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-black rounded shadow p-3 text-center h-100">
+                                <img src="{{ asset('public/assets/images/demos/demo-15/blog/post-1.jpg') }}" class="img-fluid rounded mb-3" alt="Customer 1">
+                                <div class="text-warning mb-2">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <h5 class="fw-bold">worth every dollar 💯</h5>
+                                <p class="mb-3">This watch is crazy! Been getting compliments everywhere I go. Had to cop it in gold too 😎</p>
+                                <span class="fst-italic" style="color: black;">– Ethan K.</span>
+                            </div>
+                        </div>
+            
+                        <!-- Card 2 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-black rounded shadow p-3 text-center h-100">
+                                <img src="{{ asset('public/assets/images/demos/demo-15/blog/post-2.jpg') }}" class="img-fluid rounded mb-3" alt="Customer 2">
+                                <div class="text-warning mb-2">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <h5 class="fw-bold">i love it💧</h5>
+                                <p class="mb-3">Love the quality. Worn it daily for a year, never cleaned it and it still shines just as hard.</p>
+                                <span class="fst-italic" style="color: black;">– Andrea R.</span>
+                            </div>
+                        </div>
+            
+                        <!-- Card 3 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-black rounded shadow p-3 text-center h-100">
+                                <img src="{{ asset('public/assets/images/demos/demo-15/blog/post-3.jpg') }}" class="img-fluid rounded mb-3" alt="Customer 3">
+                                <div class="text-warning mb-2">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <h5 class="fw-bold">beautiful piece</h5>
+                                <p class="mb-3">This watch is so tuff, the bling shines hella and I got a lot of compliments. This watch hittin fr 🥶</p>
+                                <span class="fst-italic" style="color: black;">– Jerrell P.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
         </main><!-- End .main -->
         @include('web.layouts2._footer')
 

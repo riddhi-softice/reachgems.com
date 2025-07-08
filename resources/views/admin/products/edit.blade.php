@@ -32,7 +32,7 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="col-lg-6 mb-3">
+                        <div class="mb-3">
                             <label class="form-label fw-bold">Select Category</label>
                             <select class="form-control" id="cat_id" name="cat_id">
                                 <option value="" disabled selected>-- Select Category --</option>

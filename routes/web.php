@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProductController as admin_product;
 use App\Http\Controllers\Admin\CommonSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\FAQController;
 
 use App\Http\Controllers\ImageController;
 // use Intervention\Image\Facades\Image;
@@ -60,10 +61,9 @@ Route::get('privacypolicy', function () {
     Route::controller(ProductController::class)->group(function () {
 
         Route::get('new','new')->name('');
- 
         Route::get('/','home_page')->name('home');
-        Route::get('more-products','more_product')->name('product.more');
-
+        // Route::get('more-products','more_product')->name('product.more');
+        Route::get('more-products',  'moreProduct')->name('more-products');
         Route::get('product/show/{id}','details_page')->name('product.show');
     });   
 
@@ -121,6 +121,9 @@ Route::prefix('admin')->group(function () {
         Route::post('account_setting_change', [AuthController::class, 'account_setting_change'])->name('post.account_setting');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+        Route::resource('faqs', FAQController::class);
+        Route::post('faqs/delete/{id}', [FAQController::class, 'destroy_faqs'])->name('faqs.delete');
+
         Route::resource('categories', CategoryController::class);
         Route::post('categories/delete/{id}', [CategoryController::class, 'destroy_sub_categories'])->name('sub_categories.delete');
        
@@ -138,7 +141,6 @@ Route::prefix('admin')->group(function () {
     Route::get('get_setting', [CommonSettingController::class, 'get_setting'])->name('get_setting');
     Route::post('change_setting', [CommonSettingController::class, 'change_setting'])->name('change_setting');
 });
-
 
 Route::get('image-upload', [ImageController::class, 'index']);
 Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');

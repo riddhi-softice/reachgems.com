@@ -131,10 +131,13 @@
                     <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab"
                         role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping & Returns</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="product-faq-link" data-toggle="tab" href="#product-faq-tab"
+                        role="tab" aria-controls="product-faq-tab" aria-selected="false">FAQ</a>
+                </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
-                    aria-labelledby="product-desc-link">
+                <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
                     <div class="product-desc-content">
                         {!! $product->long_desc !!}
                     </div><!-- End .product-desc-content -->
@@ -144,11 +147,38 @@
                         <p>{!! $product->additional_info !!}</p>
                     </div>
                 </div> -->
-                <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
-                    aria-labelledby="product-shipping-link">
+
+                <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
                     <div class="product-desc-content">
                         {!! $product->shipping_info !!}
                     </div><!-- End .product-desc-content -->
+                </div><!-- .End .tab-pane -->
+              
+                <div class="tab-pane fade" id="product-faq-tab" role="tabpanel" aria-labelledby="product-faq-link">
+                    <div class="accordion accordion-rounded" id="accordion-3">
+
+                        
+                        @foreach ($data['product_faq'] as $key => $valFaq)
+                        
+                            @php $i = $key +  1; @endphp
+                            <div class="card card-box card-sm bg-light">
+                                <div class="card-header" id="heading3-{{ $i }}">
+                                    <h2 class="card-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse3-{{ $i }}" aria-expanded="false" aria-controls="collapse3-{{ $i }}">
+                                            {{ $valFaq->question }}
+                                        </a>
+                                    </h2>
+                                </div><!-- End .card-header -->
+                                <div id="collapse3-{{ $i }}" class="collapse" aria-labelledby="heading3-{{ $i }}" data-parent="#accordion-3">
+                                    <div class="card-body">
+                                        {{ $valFaq->answer }}
+                                    </div><!-- End .card-body -->
+                                </div><!-- End .collapse -->
+                            </div><!-- End .card -->
+                                
+                        @endforeach
+                        
+                    </div><!-- End .accordion -->
                 </div><!-- .End .tab-pane -->
 
             </div><!-- End .tab-content -->
@@ -207,7 +237,7 @@
         {{-- brand view --}}
         <div class="blog-posts mb-9">
             <div class="container-fluid">
-                
+
                 <div class="heading text-center" style="margin-bottom: 4.4rem;">
                     <h2 class="title" style="margin-bottom: 2rem; font-size: 3rem; font-weight: 600; letter-spacing: -.01em;">{{ $data['common_settings']['brand_heading'] }}</h2>
                     <p class="title-desc">{{ $data['common_settings']['brand_desc'] }}</p>

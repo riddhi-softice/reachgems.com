@@ -22,31 +22,35 @@
             </div>
         </div>
     </div> --}}
-    
-    <div class="header-top bg-primary text-white py-2">
+   
+    {{-- running --}}
+    <div class="header-top text-white py-2">
         <div class="container-fluid d-flex justify-content-center align-items-center flex-wrap text-center">
-            <div class="me-4" style="margin-right: 1rem;">
-
+            <div class="me-4" style="margin-right: 1rem; margin-top: 10px; margin-bottom: 5px;">
                 <strong> {{ $data['common_settings']['top_header_heading1'] }} </strong><br>
                 <span> {{ $data['common_settings']['top_header_heading2'] }} </span>
-               
             </div>
-            <div id="countdown" class="d-flex gap-2 align-items-center ms-4">
-                <div class="time-box text-dark bg-white px-2 py-1 text-center">
-                    <span id="hours" class="fw-bold d-block">00</span>
-                    <small>HRS</small>
+
+            @if($data['common_settings']['top_header_time_status'] == "is_enable")
+
+                <div id="countdown" class="d-flex gap-2 align-items-center ms-4" style="margin-top: 7px;">
+                    <div class="time-box text-dark bg-white px-3 py-0 text-center">
+                        <span id="hours" class="fw-bold d-block">00</span>
+                        <small style="font-size: 70%;">HRS</small>
+                    </div>
+                    <span style="margin: 2px; font-size: 20px; font-weight:700;">:</span>
+                    <div class="time-box text-dark bg-white px-3 py-0 text-center">
+                        <span id="minutes" class="fw-bold d-block">00</span>
+                        <small>MIN</small>
+                    </div>
+                    <span style="margin: 2px; font-size: 20px; font-weight:700;">:</span>
+                    <div class="time-box text-dark bg-white px-3 py-0 text-center">
+                        <span id="seconds" class="fw-bold d-block">00</span>
+                        <small>SEC</small>
+                    </div>
                 </div>
-                <span style="margin: 2px; font-size: 20px; font-weight:700;">:</span>
-                <div class="time-box text-dark bg-white px-2 py-1 text-center">
-                    <span id="minutes" class="fw-bold d-block">00</span>
-                    <small>MIN</small>
-                </div>
-                <span style="margin: 2px; font-size: 20px; font-weight:700;">:</span>
-                <div class="time-box text-dark bg-white px-2 py-1 text-center">
-                    <span id="seconds" class="fw-bold d-block">00</span>
-                    <small>SEC</small>
-                </div>
-            </div>
+            @endif
+
         </div>
     </div>
     
@@ -86,6 +90,7 @@
                         </li>
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav --> --}}
+
             </div><!-- End .header-left -->
 
             <div class="header-right">
