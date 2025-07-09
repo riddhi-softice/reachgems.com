@@ -12,8 +12,7 @@
     $message = "Hello, I am interested in this product:\n\n$productName\n\nImage: $imageUrl";
 @endphp
 
-
-<div class="col-6 col-md-4 col-lg-3 mb-4">
+<div class="col-6 col-md-4 col-lg-3">
     <div class="product product-11 mt-v3 text-center">
         <figure class="product-media">
             <a href="{{ route('product.show', $product->id) }}">

@@ -50,21 +50,27 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/demos/demo-15.css') }}">
     <style>
-        .display-row .title {
-            font-size: 2.5rem;
+        .display-row {
+            padding-top: 3rem;
+            /* padding-bottom: 0; */
         }
-        .more-container {
-            margin-top: 6rem;
+
+        .product.product-11:hover, .product.product-11:focus {
+            z-index: 10;
         }
-        .header-top {
-            margin-top: -19px;
-            background-color: #000000 !important;
+        .product:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
-        .header-top .container:after, .header-top .container-fluid:after {
-            background-color: transparent;
+        .product.product-11 .product-action {
+            bottom: 2rem;
         }
-        .d-block {
-            font-weight: bold;
+        .product:hover .product-action, .product:focus .product-action {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-action {
+            /* background-color: transparent; */
         }
     </style>
 </head> 
@@ -72,80 +78,90 @@
     <div class="page-wrapper">
 
         @include('web.layouts2._header')
-        <main class="main">      
+        <main class="main">
 
-            <div class="heading heading-center mb-6">
-                <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link {{ !$data['selected_category_id'] ? 'active' : '' }}"
-                           href="{{ route('more-products') }}">All</a>
-                    </li>
-                    @foreach ($data['categories'] as $category)
-                        <li class="nav-item">
-                            <a class="nav-link {{ $data['selected_category_id'] == $category->id ? 'active' : '' }}"
-                               href="{{ route('more-products', ['category_id' => $category->id]) }}">{{ $category->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            
-            <div class="tab-content">
-                <div class="tab-pane fade show active" role="tabpanel">
+        {{-- <div class="display-row bg-light">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12"> --}}
+
+            <div class="display-row bg-light w-100 px-lg-5 px-0">
+                <div class="w-100">
+                    <div class="row gx-3">
+                        <div class="w-100">
         
-                    <div class="row justify-content-center">
-                        @forelse ($data['all_products'] as $product)
-                            @include('web.partials.product-card', ['product' => $product])
-                        @empty
-                            <p>No products found.</p>
-                        @endforelse
+                            {{-- Category Tabs --}}
+                            <div class="heading heading-center mb-5">
+                                <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ !$data['selected_category_id'] ? 'active' : '' }}"
+                                           href="{{ route('more-products') }}">All</a>
+                                    </li>
+                                    @foreach ($data['categories'] as $category)
+                                        <li class="nav-item">
+                                            <a class="nav-link {{ $data['selected_category_id'] == $category->id ? 'active' : '' }}"
+                                               href="{{ route('more-products', ['category_id' => $category->id]) }}">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            
+                            {{-- Products --}}
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="top-all-tab" role="tabpanel" aria-labelledby="top-all-link">
+                                    <div class="row justify-content-center">
+                                        @forelse ($data['all_products'] as $product)
+                                     
+                                            @include('web.partials.product-card', ['product' => $product])
+                                        @empty
+                                            <p>No products found.</p>
+                                        @endforelse
+                                    </div>
+        
+                                    {{-- Pagination --}}
+                                    @if ($data['all_products']->lastPage() > 1)
+                                        @php $paginator = $data['all_products']; @endphp
+                                        <nav aria-label="Page navigation">
+                                            {{-- <ul class="pagination justify-content-center align-items-center"> --}}
+                                            <ul class="pagination justify-content-center align-items-center mt-4">
+                                                <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
+                                                    <a class="page-link page-link-prev" href="{{ $paginator->previousPageUrl() ?? '#' }}">
+                                                        <span><i class="icon-long-arrow-left"></i></span> Prev
+                                                    </a>
+                                                </li>
+                                                @for ($i = 1; $i <= $paginator->lastPage(); $i++)
+                                                    <li class="page-item {{ $paginator->currentPage() == $i ? 'active' : '' }}">
+                                                        <a class="page-link" href="{{ $paginator->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                                <li class="page-item-total mx-2 text-muted">of {{ $paginator->lastPage() }}</li>
+                                                <li class="page-item {{ !$paginator->hasMorePages() ? 'disabled' : '' }}">
+                                                    <a class="page-link page-link-next" href="{{ $paginator->nextPageUrl() ?? '#' }}">
+                                                        Next <span><i class="icon-long-arrow-right"></i></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    @endif
+                                </div>
+                            </div>
+        
+                        </div>
                     </div>
                 </div>
-        
-                @if ($data['all_products']->lastPage() > 1)
-                    @php $paginator = $data['all_products']; @endphp
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center align-items-center">
-        
-                            {{-- Previous Page Link --}}
-                            <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
-                                <a class="page-link page-link-prev" 
-                                href="{{ $paginator->previousPageUrl() ?? '#' }}"
-                                aria-label="Previous">
-                                    <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>
-                                    Prev
-                                </a>
-                            </li>
-        
-                            {{-- Page Numbers --}}
-                            @for ($i = 1; $i <= $paginator->lastPage(); $i++)
-                                <li class="page-item {{ $paginator->currentPage() == $i ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $paginator->url($i) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-        
-                            {{-- "of X" display --}}
-                            <li class="page-item-total mx-2 text-muted">
-                                of {{ $paginator->lastPage() }}
-                            </li>
-        
-                            {{-- Next Page Link --}}
-                            <li class="page-item {{ !$paginator->hasMorePages() ? 'disabled' : '' }}">
-                                <a class="page-link page-link-next" 
-                                href="{{ $paginator->nextPageUrl() ?? '#' }}"
-                                aria-label="Next">
-                                    Next
-                                    <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                @endif
-        
             </div>
-        </main><!-- End .main -->
+
+        </main>
         @include('web.layouts2._footer')
+        
+        
 
     </div><!-- End .page-wrapper -->
+    
+    
+    <!-- ======= Mobile Menu  ======= -->
+    @include('web.layouts2._mobile-menu')
+    <!-- ======= End Mobile Menu  ======= -->
 
 <!-- Plugins JS File -->
 <script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>

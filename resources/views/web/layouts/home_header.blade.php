@@ -33,7 +33,24 @@
 
             @if($data['common_settings']['top_header_time_status'] == "is_enable")
 
-                <div id="countdown" class="d-flex gap-2 align-items-center ms-4" style="margin-top: 7px;">
+                <div id="countdown" class="d-flex gap-1 align-items-center ms-4" style="margin-top: 3px;">
+                    <div class="time-box text-dark bg-white text-center rounded" style="min-width: 30px;">
+                        <span id="hours" class="fw-bold d-block" style="font-size: 1rem;">00</span>
+                        <small style="font-size: 60%;">HRS</small>
+                    </div>
+                    <span style="font-size: 1.2rem; font-weight: 700; margin-left: 5px; margin-right: 5px;">:</span>
+                    <div class="time-box text-dark bg-white text-center rounded" style="min-width: 30px;">
+                        <span id="minutes" class="fw-bold d-block" style="font-size: 1rem;">00</span>
+                        <small style="font-size: 60%;">MIN</small>
+                    </div>
+                    <span style="font-size: 1.2rem; font-weight: 700; margin-left: 5px; margin-right: 5px;">:</span>
+                    <div class="time-box text-dark bg-white text-center rounded" style="min-width: 30px;">
+                        <span id="seconds" class="fw-bold d-block" style="font-size: 1rem;">00</span>
+                        <small style="font-size: 60%;">SEC</small>
+                    </div>
+                </div>
+            
+                {{-- <div id="countdown" class="d-flex gap-2 align-items-center ms-4" style="margin-top: 3px;">
                     <div class="time-box text-dark bg-white px-3 py-0 text-center">
                         <span id="hours" class="fw-bold d-block">00</span>
                         <small style="font-size: 70%;">HRS</small>
@@ -48,7 +65,7 @@
                         <span id="seconds" class="fw-bold d-block">00</span>
                         <small>SEC</small>
                     </div>
-                </div>
+                </div> --}}
             @endif
 
         </div>

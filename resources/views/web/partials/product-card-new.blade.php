@@ -12,7 +12,9 @@
     $message = "Hello, I am interested in this product:\n\n$productName\n\nImage: $imageUrl";
 @endphp
 
-<div class="col-6 col-md-3">
+<div class="col-12 col-md-3">
+    {{-- <div class="col-6 col-sm-4 col-md-3 col-lg-2"> --}}
+
     <div class="product product-4">
         <figure class="product-media">
             <a href="{{ route('product.show', $product->id) }}">
@@ -21,13 +23,6 @@
                 <img src="{{ $secondImage ? asset('public/assets/images/demos/demo-2/products/' . $secondImage->path) : asset('public/assets/images/no-image.jpg') }}"
                     alt="{{ $product->name }}" class="product-image-hover">
             </a>
-           
-            <div class="product-action">
-                <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode($message) }}" class="btn-product btn-cart"
-                target="_blank">
-                <span>Order Now</span>
-            </a>
-            </div><!-- End .product-action -->
         </figure><!-- End .product-media -->
 
         <div class="product-body">
@@ -42,5 +37,12 @@
                 @endif
             </div>
         </div><!-- End .product-body -->
+        
+        <div class="product-action">
+            <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode($message) }}" class="btn-product btn-cart" target="_blank">
+                <span>Order Now</span>
+            </a>
+        </div><!-- End .product-action -->
+        
     </div><!-- End .product -->
 </div><!-- End .col-sm-6 -->

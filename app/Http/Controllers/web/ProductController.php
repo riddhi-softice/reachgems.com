@@ -98,10 +98,10 @@ class ProductController extends Controller
             $products = Product::with('images')
                 ->where('cat_id', $categoryId)
                 ->latest()
-                ->paginate(2)
+                ->paginate(4)
                 ->appends(['category_id' => $categoryId]);
         } else {
-            $products = Product::with('images')->latest()->paginate(2);
+            $products = Product::with('images')->latest()->paginate(4);
         }
 
         // Adjust prices

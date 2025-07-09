@@ -157,7 +157,6 @@
                 <div class="tab-pane fade" id="product-faq-tab" role="tabpanel" aria-labelledby="product-faq-link">
                     <div class="accordion accordion-rounded" id="accordion-3">
 
-                        
                         @foreach ($data['product_faq'] as $key => $valFaq)
                         
                             @php $i = $key +  1; @endphp
@@ -185,14 +184,39 @@
         </div><!-- End .product-details-tab -->
 
         {{-- category view --}}
-        <div class="blog-posts mb-9">
+        
+         {{-- category  --}}
+         <div class="blog-posts mb-9 mt-5">
             <div class="container-fluid">
-                <div class="heading text-center" style="margin-bottom: 4.4rem;">
-                    <h2 class="title" style="margin-bottom: 2rem; font-size: 3rem; font-weight: 600; letter-spacing: -.01em;">{{ $data['common_settings']['cat_heading'] }}</h2>
+                <div class="heading text-center">
+                    <h2 class="title">{{ $data['common_settings']['cat_heading'] }}</h2>
                     <p class="title-desc">{{ $data['common_settings']['cat_desc'] }}</p>
                 </div><!-- End .heading -->
 
                 <div class="owl-carousel owl-simple" data-toggle="owl" 
+                    data-owl-options='{
+                        "nav": false, 
+                        "dots": true,
+                        "items": 5,
+                        "margin": 10,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items": 2
+                            },
+                            "520": {
+                                "items": 3
+                            },
+                            "768": {
+                                "items": 4
+                            },
+                            "992": {
+                                "items": 5
+                            }
+                        }
+                    }'>
+
+                {{-- <div class="owl-carousel owl-simple" data-toggle="owl" 
                     data-owl-options='{
                         "nav": false, 
                         "dots": true,
@@ -213,26 +237,46 @@
                                 "items":4
                             }
                         }
-                    }'>
-
+                    }'> --}}
+                    
                     @foreach ($data['all_categories'] as $cat)
-                        <article class="entry">
-                            <figure class="entry-media">
+                        {{-- <article class="entry text-center" style="padding: 5px;">
+                            <figure class="">
                                 <a href="#">
-                                    <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}" alt="image desc" style="height: 300px !important" height="300">
+                                    <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}"
+                                        alt="{{ $cat->name }}"
+                                        style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%; margin: auto;">
                                 </a>
-                            </figure><!-- End .entry-media -->
-                            <div class="entry-body text-center">
-                                <h3 class="entry-title">
+                            </figure>
+                            <div class="entry-body text-center mt-2">
+                                <h3 class="entry-title" style="font-size: 16px;">
                                     <a href="#">{{ $cat->name }}</a>
-                                </h3><!-- End .entry-title -->
-                            </div><!-- End .entry-body -->
-                        </article><!-- End .entry -->
-                    @endforeach
+                                </h3>
+                            </div>
+                        </article> --}}
+                       
+                         <article class="entry text-center" style="padding: 0; margin: 0;">
+                            <figure class=" mb-2">
+                                <a href="{{ url('more-products') }}">
+                                    <img src="{{ asset('public/assets/images/sub_categories/' . $cat->image) }}"
+                                         alt="{{ $cat->name }}"
+                                         style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: auto;">
+                                </a>
+                            </figure>
+                            <div class="entry-body text-center">
+                                <h3 class="entry-title mb-0" style="font-size: 14px;">
+                                    <a href="{{ url('more-products') }}" class="text-dark">{{ $cat->name }}</a>
+                                </h3>
+                            </div>
+                        </article>
+                        
+                    @endforeach                  
                     
                 </div><!-- End .owl-carousel -->
             </div><!-- End .container-fluid -->
         </div><!-- End .blog-posts -->
+        
+      
 
         {{-- brand view --}}
         <div class="blog-posts mb-9">

@@ -44,6 +44,13 @@
             </a>
         </li>
        
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('faqs.index') ? '' : 'collapsed' }}" href="{{ route('faqs.index') }}">
+                <i class="bi bi-list"></i>
+                <span>FAQs</span>
+            </a>
+        </li>
+       
         <!-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('get_order_list') ? '' : 'collapsed' }}" href="{{ route('get_order_list') }}">
                 <i class="bi bi-person"></i>

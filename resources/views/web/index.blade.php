@@ -83,6 +83,13 @@
             margin-top: 0 !important;
             padding-top: 0 !important;
         } */
+
+        @media (max-width: 767.98px) {
+            .mobile-mb-3rem {
+                margin-bottom: 3rem !important;
+            }
+        }
+       
     </style>
 </head> 
 <body>
@@ -91,7 +98,7 @@
         @include('web.layouts.home_header')
         <main class="main">      
 
-            <div class="intro-slider-container position-relative" style="overflow: hidden; height: 100vh;">
+            <div class="intro-slider-container position-relative" style="overflow: hidden; height: 70vh;">
                 <div class="intro-slide position-relative w-100 h-100">
                     <!-- Fullscreen Video Background -->
                     <video autoplay muted loop playsinline class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-n1" style="object-fit: cover;">
@@ -111,11 +118,12 @@
                 </div>
             </div>          
 
-            <div class="display-row bg-light">
+            {{-- <div class="display-row bg-light"> --}}
+            <div class="display-row bg-light pb-0 pb-md-4 pb-lg-5">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        
                         <div class="col-lg-12">
+
                             <div class="heading text-center">
                                 <h2 class="title">Recently arrived</h2>
                                 {{-- <h2 class="title">About This Look</h2><!-- End .title text-center -->
@@ -131,13 +139,21 @@
                         </div><!-- End .col-lg-6 -->
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
+
+                <!--<div class="more-container text-center my-3 py-0" style="margin-top: 4rem !important;">-->
+                <!--    <a href="{{ url('more-products') }}" class="btn btn-outline-darker btn-more"><span>Shop More Now</span><i class="icon-long-arrow-down"></i></a>-->
+                <!--</div>-->
+                
+                <div class="more-container text-center py-0 mt-5 mobile-mb-3rem">
+                    <a href="{{ url('more-products') }}" class="btn btn-outline-darker btn-more">
+                        <span>Shop More Now</span><i class="icon-long-arrow-down"></i>
+                    </a>
+                </div>
+          
             </div><!-- End .display-row .bg-light -->
 
-            <div class="more-container text-center">
-                <a href="{{ url('more-products') }}" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
-            </div>
-
-            <div class="blog-posts mb-9">
+            {{-- category  --}}
+            <div class="blog-posts mb-9 mt-5">
                 <div class="container-fluid">
                     <div class="heading text-center">
                         <h2 class="title">{{ $data['common_settings']['cat_heading'] }}</h2>
@@ -145,6 +161,29 @@
                     </div><!-- End .heading -->
 
                     <div class="owl-carousel owl-simple" data-toggle="owl" 
+                        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "items": 5,
+                            "margin": 10,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items": 2
+                                },
+                                "520": {
+                                    "items": 3
+                                },
+                                "768": {
+                                    "items": 4
+                                },
+                                "992": {
+                                    "items": 5
+                                }
+                            }
+                        }'>
+
+                    {{-- <div class="owl-carousel owl-simple" data-toggle="owl" 
                         data-owl-options='{
                             "nav": false, 
                             "dots": true,
@@ -165,28 +204,47 @@
                                     "items":4
                                 }
                             }
-                        }'>
-
+                        }'> --}}
+                        
                         @foreach ($data['all_categories'] as $cat)
-                            <article class="entry">
-                                <figure class="entry-media">
-                                    <a href="#">
-                                        <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}" alt="image desc" style="height: 300px !important" height="300">
+                            {{-- <article class="entry text-center" style="padding: 5px;">
+                                <figure class="">
+                                    <ahref="{{ url('more-products') }}">
+                                        <img src="{{ asset('public/assets/images/sub_categories/'. $cat->image) }}"
+                                            alt="{{ $cat->name }}"
+                                            style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%; margin: auto;">
                                     </a>
-                                </figure><!-- End .entry-media -->
-                                <div class="entry-body text-center">
-                                    <h3 class="entry-title">
+                                </figure>
+                                <div class="entry-body text-center mt-2">
+                                    <h3 class="entry-title" style="font-size: 16px;">
                                         <a href="#">{{ $cat->name }}</a>
-                                    </h3><!-- End .entry-title -->
-                                </div><!-- End .entry-body -->
-                            </article><!-- End .entry -->
-                        @endforeach
+                                    </h3>
+                                </div>
+                            </article> --}}
+                           
+                            <article class="entry text-center" style="padding: 0; margin: 0;">
+                                <figure class=" mb-2">
+                                    <a href="{{ url('more-products') }}">
+                                        <img src="{{ asset('public/assets/images/sub_categories/' . $cat->image) }}"
+                                             alt="{{ $cat->name }}"
+                                             style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: auto;">
+                                    </a>
+                                </figure>
+                                <div class="entry-body text-center">
+                                    <h3 class="entry-title mb-0" style="font-size: 14px;">
+                                        <a href="{{ url('more-products') }}" class="text-dark">{{ $cat->name }}</a>
+                                    </h3>
+                                </div>
+                            </article>
+                            
+                        @endforeach                  
                         
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .blog-posts -->
 
-            <div class="blog-posts mb-9 py-5 text-white">
+            {{-- cutomers --}}
+            <div class="blog-posts mb-5 text-white">
                 <div class="container">
                     <div class="heading text-center mb-5">
                         <h2 class="title">Loved by <span style="color:#c96;">100,000+</span> Iced Out Customers</h2>
@@ -239,6 +297,11 @@
         @include('web.layouts2._footer')
 
     </div><!-- End .page-wrapper -->
+    
+    <!-- ======= Mobile Menu  ======= -->
+    @include('web.layouts2._mobile-menu')
+    <!-- ======= End Mobile Menu  ======= -->
+    
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 <!-- Plugins JS File -->
